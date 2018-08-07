@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Causa extends Model
+class Especie extends Model
 {
-  public $table = "causa";
+  public $table = "especie";
 
 	public $primaryKey = "id";
 
@@ -15,10 +15,15 @@ class Causa extends Model
   public $fillable = [
 		'id',
 		'RUC',
+		'RUE',
 		'descripcion',
-		'nombre_fiscal',
+		'fecha_incautacion',
 		'fecha_ingreso',
+		'trimestre_vigente',
+		'trimestre',
+		'anio',
 		'id_fiscalia',
+		'id_sub_tipo_especie',
   ];
 	protected $hidden = [
   	'created_at', 'updated_at',
@@ -26,5 +31,8 @@ class Causa extends Model
 
  	public function fiscalia(){
   	return $this->belongsTo(Fiscalia::class, 'id_fiscalia');
+	}
+	public function subTipoEspecie(){
+  	return $this->belongsTo(SubTipoEspecie::class, 'id_sub_tipo_especie');
 	}
 }

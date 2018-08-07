@@ -13,12 +13,16 @@ class CreateCausasTable extends Migration
    */
   public function up()
   {
-    Schema::create('causa', function (Blueprint $table) {
+    Schema::create('especie', function (Blueprint $table) {
       $table->increments('id');
       $table->string('RUC');
+      $table->string('RUE');
       $table->text('descripcion');
-      $table->string('nombre_fiscal');
-      $table->text('fecha_ingreso');
+      $table->date('fecha_incautacion')->nullable();
+      $table->date('fecha_ingreso')->nullable();
+      $table->boolean('trimestre_vigente')->default(TRUE);
+      $table->enum('trimestre', ['primero', 'segundo', 'tercero', 'cuarto']);
+      $table->integer('anio');
       $table->timestamps();
     });
   }
@@ -30,6 +34,6 @@ class CreateCausasTable extends Migration
    */
   public function down()
   {
-    Schema::dropIfExists('causas');
+    Schema::dropIfExists('especie');
   }
 }

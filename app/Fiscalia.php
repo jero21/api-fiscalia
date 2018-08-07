@@ -13,19 +13,18 @@ class Fiscalia extends Model
 	public $timestamps = true;
 
   public $fillable = [
-  		'id',
-  		'nombre',
-  		'codigo',
-  		'id_region',
+		'id',
+		'nombre',
+		'codigo',
   ];
-
 	protected $hidden = [
   	'created_at', 'updated_at',
-  ];
- 	public function causas(){
-  	return $this->hasMany(Causas::class, 'id_causa');
+	];
+
+	public function especies(){
+  	return $this->hasMany(Especie::class, 'id_fiscalia');
 	}
-	public function region(){
-  	return $this->belongsTo(Region::class, 'id_region');
+	public function usuarios(){
+  	return $this->hasMany(User::class, 'id_fiscalia');
 	}
 }

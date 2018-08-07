@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddIdFiscaliaToCausaTable extends Migration
+class CreateConfiguracionTable extends Migration
 {
   /**
    * Run the migrations.
@@ -13,9 +13,11 @@ class AddIdFiscaliaToCausaTable extends Migration
    */
   public function up()
   {
-    Schema::table('especie', function (Blueprint $table) {
-      $table->integer('id_fiscalia')->unsigned();
-      $table->foreign('id_fiscalia')->references('id')->on('fiscalia');
+    Schema::create('configuracion', function (Blueprint $table) {
+      $table->increments('id');
+      $table->enum('trimestre', ['primero', 'segundo', 'tercero', 'cuarto']);
+      $table->integer('anio');
+      $table->timestamps();
     });
   }
 
@@ -26,8 +28,6 @@ class AddIdFiscaliaToCausaTable extends Migration
    */
   public function down()
   {
-    Schema::table('especie', function (Blueprint $table) {
-        //
-    });
+      Schema::dropIfExists('configuracion');
   }
 }

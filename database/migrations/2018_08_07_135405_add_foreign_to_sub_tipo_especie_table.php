@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddIdFiscaliaToCausaTable extends Migration
+class AddForeignToSubTipoEspecieTable extends Migration
 {
   /**
    * Run the migrations.
@@ -13,9 +13,9 @@ class AddIdFiscaliaToCausaTable extends Migration
    */
   public function up()
   {
-    Schema::table('especie', function (Blueprint $table) {
-      $table->integer('id_fiscalia')->unsigned();
-      $table->foreign('id_fiscalia')->references('id')->on('fiscalia');
+    Schema::table('sub_tipo_especie', function (Blueprint $table) {
+      $table->integer('id_tipo_especie')->unsigned();
+      $table->foreign('id_tipo_especie')->references('id')->on('tipo_especie');
     });
   }
 
@@ -26,7 +26,7 @@ class AddIdFiscaliaToCausaTable extends Migration
    */
   public function down()
   {
-    Schema::table('especie', function (Blueprint $table) {
+    Schema::table('sub_tipo_especie', function (Blueprint $table) {
         //
     });
   }

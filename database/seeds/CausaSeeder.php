@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Causa;
+use App\Especie;
 
 class CausaSeeder extends Seeder
 {
@@ -12,13 +12,16 @@ class CausaSeeder extends Seeder
    */
   public function run()
   {
-    Causa::updateOrCreate([
-    	'RUC' => '1842124552-4', 
-    	'descripcion' => 'esto es una descripcion', 
-    	'nombre_fiscal' => 'Juan Perez',
+    Especie::updateOrCreate([
+    	'RUC' => '1800593357-5', 
+      'RUE' => '3390896-2',
+      'trimestre' => 'tercero',
+      'anio'  => 2018,
+      'descripcion' => '01 VEHICULO, TIPO AUTOMOVIL, MARCA VOLWAGEN, MODELO GOL G5 AÑO 2010, COLOR ROJO FLASH ´PPÚ CFJV.90',
+      'fecha_incautacion' => '2018-06-01',
     	'fecha_ingreso' => '2018-06-02',
     	'id_fiscalia' => 1,
-
+      'id_sub_tipo_especie' => 1,
     ]);
   }
 }
