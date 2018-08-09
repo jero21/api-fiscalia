@@ -30,14 +30,13 @@ class ConfiguracionController extends Controller
 
       // Si la variable 'cierre_trimestre' viene como 1 o verdadero, entonces
       // Se actualizan todos los registros del trimestre vigente y su estado se cambia de 1 a 0
-      if ($request->cierre_trimestre == 1) {
-        $especies = Especie::where('trimestre_vigente', '=', 1)->get();
+      if ($request->cierre_trimestre == true) {
+        $especies = Especie::where('trimestre_vigente', '=', true)->get();
         foreach ($especies as $especie) {
-          $especie->trimestre_vigente = 0;
+          $especie->trimestre_vigente = false;
           $especie->save();
         }
       }
-
       return ['update' => true];
     }catch (\Exception $e) {
       $data = [

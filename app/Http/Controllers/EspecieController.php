@@ -28,7 +28,7 @@ class EspecieController extends Controller
   }
 
   //Todas las especies de la fiscalia que pertenece el usuario que no se crearon en el trimestre vigente
-  public function trimestreVigente(AuthenticateController $auth)
+  public function trimestresNoVigente(AuthenticateController $auth)
   {
     $especie = Especie::with(['subTipoEspecie.tipoEspecie'])
       ->where('id_fiscalia', $auth->getAuthUser()->id_fiscalia)
@@ -38,6 +38,15 @@ class EspecieController extends Controller
     return $this->especiesTransformer->transformCollection($especie->toArray());
   }
 
+  public function adminIndex(AuthenticateController $auth, $id_fiscalia)
+  {
+    $especie = Especie::with(['subTipoEspecie.tipoEspecie'])
+      ->where('id_fiscalia', $id_fiscalia)
+      ->where('trimestre_vigente', 1)
+      ->get();
+
+    return $this->especiesTransformer->transformCollection($especie->toArray());
+  }
   /**
    * Store a newly created resource in storage.
    *

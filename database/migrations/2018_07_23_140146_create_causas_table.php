@@ -20,7 +20,7 @@ class CreateCausasTable extends Migration
       $table->text('descripcion');
       $table->date('fecha_incautacion')->nullable();
       $table->date('fecha_ingreso')->nullable();
-      $table->boolean('trimestre_vigente')->default(TRUE);
+      $table->boolean('trimestre_vigente')->default(true);
       $table->enum('trimestre', ['primero', 'segundo', 'tercero', 'cuarto']);
       $table->integer('anio');
       $table->timestamps();

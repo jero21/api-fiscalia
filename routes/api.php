@@ -22,7 +22,10 @@ Route::group(['middleware' => ['jwt.auth']], function () {
 	Route::apiResource('especie', 'EspecieController');
 
 	// ESPECIES DE TRIMESTRE NO VIGENTE
-	Route::get('trimestreVigente', 'EspecieController@trimestreVigente');
+	Route::get('trimestresNoVigente', 'EspecieController@trimestresNoVigente');
+
+	// LISTADO DE ESPECIES PARA ADMINISTRADOR (POR FISCALÍA)
+	Route::get('adminIndex/{id_fiscalia}', 'EspecieController@adminIndex');
 
 	// CONFIGURACION
 	Route::apiResource('configuracion', 'ConfiguracionController');
